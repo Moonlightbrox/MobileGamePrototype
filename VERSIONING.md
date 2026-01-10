@@ -29,6 +29,11 @@ git reset --hard v0.2.0
 git push --force origin main
 ```
 
+## Where to see versions
+
+On GitHub, open the repo and click the "Tags" page to view all versions.
+Locally, run `git tag` to list all tags.
+
 ## Scripted tagging
 
 Use the helper script to create and push a tag:
