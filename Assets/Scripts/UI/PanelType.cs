@@ -6,5 +6,6 @@ public enum PanelType
     City,
     Garage,
     Profile,
+    Dialogue,
     GlobalHUD
 }
