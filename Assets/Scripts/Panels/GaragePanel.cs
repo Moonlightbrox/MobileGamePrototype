@@ -8,6 +8,7 @@ public class GaragePanel : MonoBehaviour
     {
         if (panelController != null)
         {
+            Debug.Log("[GaragePanel] OnEnable -> queue Dialogue panel");
             StartCoroutine(ShowDialogueNextFrame());
         }
     }
@@ -16,6 +17,7 @@ public class GaragePanel : MonoBehaviour
     {
         // Wait a frame so PanelController.Show(Garage) finishes toggling panels.
         yield return null;
+        Debug.Log("[GaragePanel] ShowDialogueNextFrame -> show Dialogue panel");
         panelController.Show(PanelType.Dialogue);
     }
 }

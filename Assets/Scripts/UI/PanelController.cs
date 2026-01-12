@@ -44,6 +44,8 @@ public class PanelController : MonoBehaviour
             return;
         }
 
+        Debug.Log($"[PanelController] Show -> {panel} (overlay={target.IsOverlay})");
+
         // Overlay panels stack on top of the current main panel, so only enable the overlay itself.
         if (target.IsOverlay)
         {
@@ -72,6 +74,29 @@ public class PanelController : MonoBehaviour
 
     private void Start()
     {
+        InitializePanels();
+        Debug.Log($"[PanelController] Start -> startPanel={startPanel}");
         Show(startPanel);
+    }
+
+    private void InitializePanels()
+    {
+        if (panels == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < panels.Length; i++)
+        {
+            PanelEntry entry = panels[i];
+            if (entry == null || entry.Panel == null)
+            {
+                continue;
+            }
+
+            entry.Panel.SetActive(false);
+        }
+
+        Debug.Log("[PanelController] InitializePanels -> all panels inactive");
     }
 }

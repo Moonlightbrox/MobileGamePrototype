@@ -30,6 +30,8 @@ public class DialoguePanel : MonoBehaviour
         currentLineIndex = 0;
         revealState.Clear();
 
+        Debug.Log($"[DialoguePanel] StartDialogue -> dialogue={(currentDialogue != null ? currentDialogue.name : "null")}");
+
         if (currentDialogue != null && currentDialogue.Participants != null)
         {
             foreach (var participant in currentDialogue.Participants)

@@ -19,12 +19,14 @@ public class IntroPanel : MonoBehaviour
         hasCompleted = false;
         ShowSlide(slideIndex);
         StartAutoAdvance();
+        Debug.Log($"[IntroPanel] OnEnable -> slides={GetSlideCount()} duration={slideDuration:0.##}s");
     }
 
     private void OnDisable()
     {
         // Stop any timers when the panel is hidden.
         StopAutoAdvance();
+        Debug.Log("[IntroPanel] OnDisable -> auto-advance stopped");
     }
 
     private void Update()
@@ -83,6 +85,7 @@ public class IntroPanel : MonoBehaviour
             {
                 hasCompleted = true;
                 // Intro complete: move to the garage panel.
+                Debug.Log("[IntroPanel] Complete -> show Garage panel");
                 panelController.Show(PanelType.Garage);
             }
             return;
@@ -114,6 +117,12 @@ public class IntroPanel : MonoBehaviour
         // Wait between slides and advance until the last slide is reached.
         int slideCount = GetSlideCount();
         while (slideIndex < slideCount - 1)
+        {
+            yield return new WaitForSeconds(slideDuration);
+            AdvanceSlide();
+        }
+
+        if (slideCount > 0 && !hasCompleted)
         {
             yield return new WaitForSeconds(slideDuration);
             AdvanceSlide();
